@@ -3,13 +3,19 @@ part of 'shared.dart';
 const double defaultMargin = 18.0;
 const double defaultRadius = 18.0;
 
-const Color kPrimaryColor = Color(0xff2F2F2F);
+const Color kPrimaryColor = Color(0xff0C1015);
 const Color kSecondaryColor = Color(0xffFFCB74);
 const Color kPrimaryGreyColor = Color(0xff8F9CA9);
 const Color kBlackColor = Color(0xff2F2F2F);
+const Color kSearchColor = Color(0xff141921);
+const Color kCardColor = Color(0xff232124);
 const Color kWhiteColor = Color(0xffF7F7F7);
 const Color kgreenColor = Color(0xff38C976);
-const Color kredColor = Color(0xffFE5050);
+const Color kredColor = Color(0xff800800);
+const Color kTextColor = Color(0xffC0BEC1);
+const Color kTextOrangeColor = Color(0xffD27842);
+
+//D27842
 
 TextStyle blackTextStyleInter = GoogleFonts.inter(
   color: kBlackColor,

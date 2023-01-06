@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.orange,
         ),
-        home: const WrapperPage(),
+        home: WrapperPage(),
       ),
     );
   }

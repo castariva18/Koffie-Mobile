@@ -15,6 +15,8 @@ class _WrapperPageState extends State<WrapperPage> {
             ? SplashScreenPage()
             : (pageState is RoutesDashboardPage)
                 ? DashboardPage()
-                : Container());
+                : (pageState is RoutesLoginPage)
+                    ? LoginPage()
+                    : Container());
   }
 }
