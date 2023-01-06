@@ -24,59 +24,58 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Dashboard",
-            style: blackTextStyleInter.copyWith(
-              fontSize: 24,
-              fontWeight: bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Text(
+                  "Koffie",
+                  style: whiteTextStyleInter.copyWith(
+                    fontSize: 28,
+                    fontWeight: bold,
+                  ),
+                ),
+              ),
+              Container(
+                height: 40,
+                width: 40,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/pic.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,
           ),
           Container(
+            height: MyUtility(context).height / 18,
+            width: double.infinity,
+            margin: EdgeInsets.only(left: 4, right: 4, top: 10, bottom: 10),
+            padding: EdgeInsets.only(left: 8, right: 8),
             decoration: BoxDecoration(
-              color: kBlackColor,
-              borderRadius: BorderRadius.circular(20),
+              color: kSearchColor,
+              borderRadius: BorderRadius.circular(10),
             ),
-            height: MyUtility(context).height / 6,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: defaultMargin,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Event name',
-                        style: whiteTextStyleInter.copyWith(
-                          fontWeight: regular,
-                        ),
-                      ),
-                      Text(
-                        "namaEvent.toString()",
-                        style: whiteTextStyleInter.copyWith(
-                          fontWeight: bold,
-                          fontSize: 16,
-                          color: const Color(0xffFFCB74),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: MyUtility(context).height / 10,
-                    width: 150,
-                    // decoration: const BoxDecoration(
-                    //   image: DecorationImage(
-                    //     image: AssetImage('assets/images/ic_kado.png'),
-                    //   ),
-                    // ),
-                  ),
-                ],
+            child: TextField(
+              style: TextStyle(color: Colors.white),
+              //onChanged: (query) => searchList(query),
+              enableSuggestions: false,
+              //  controller: _codeController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: kPrimaryGreyColor,
+                ),
+                border: InputBorder.none,
+                hintText: 'Search',
+                hintStyle: greyTextStyleInter.copyWith(
+                  fontSize: MyUtility(context).width / 24,
+                  fontWeight: regular,
+                ),
               ),
             ),
           )
@@ -88,27 +87,15 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget contentTwo() {
     return Padding(
       padding: const EdgeInsets.only(
-        left: defaultMargin - 4,
-        right: defaultMargin - 4,
-        top: defaultRadius,
-      ),
+          left: defaultMargin - 4,
+          right: defaultMargin - 4,
+          top: defaultRadius,
+          bottom: defaultRadius),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // content status
-
-          Text(
-            "Participants",
-            style: blackTextStyleInter.copyWith(
-              fontSize: 16,
-              fontWeight: bold,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
           SizedBox(
-            height: MyUtility(context).height / 2.5,
+            height: MyUtility(context).height / 1.25,
             width: double.infinity,
             child: BlocBuilder<CoffeeCubit, CoffeeState>(
               builder: (context, state) {
@@ -139,13 +126,24 @@ class _DashboardPageState extends State<DashboardPage> {
                       padding: const EdgeInsets.only(top: 8),
                       itemCount: state.result.length,
                       itemBuilder: (context, index) {
-                        var dataAttandance = state.result[index];
+                        var data = state.result[index];
+                        final List fixedList =
+                            Iterable<int>.generate(data.ingredients.length)
+                                .toList();
+
+                        fixedList.map((idx) {
+                          String val = data.ingredients[idx];
+                          // print(val);
+                          // print("tes");
+                        });
+                        // print(data.ingredients);
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 16),
                           child: CoffeeListData(
-                            title: dataAttandance.title,
-                            description: dataAttandance.description,
-                          ),
+                              img: data.image,
+                              title: data.title,
+                              description: data.description,
+                              ingredients: data.ingredients),
                         );
                       },
                     );
@@ -166,7 +164,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF6F6F6),
+      backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Stack(
           children: [

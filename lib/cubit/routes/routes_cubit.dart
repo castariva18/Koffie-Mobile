@@ -9,6 +9,8 @@ class RoutesCubit extends Cubit<RoutesState> {
   Stream<RoutesState> mapEventToState(RoutesState state) async* {
     if (state is RoutesSplashScreenPage) {
       emit(RoutesSplashScreenPage());
+    } else if (state is RoutesLoginPage) {
+      emit(RoutesLoginPage());
     } else if (state is RoutesDashboardPage) {
       emit(RoutesDashboardPage());
     }

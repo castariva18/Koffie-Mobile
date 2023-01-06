@@ -17,21 +17,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   Future<void> _checkStatusPageToken() async {
     var duration = const Duration(milliseconds: 3000);
     Timer(duration, () {
-      // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-      context.read<RoutesCubit>().emit(RoutesDashboardPage());
+      context.read<RoutesCubit>().emit(RoutesLoginPage());
     });
-  }
-
-  Widget imageCenter() {
-    return Container(
-      height: 120,
-      width: 200,
-      // decoration: const BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage('assets/images/ic_icon_primary.png'),
-      //   ),
-      // ),
-    );
   }
 
   Widget content() {
@@ -39,12 +26,19 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          imageCenter(),
           Text(
-            'Your attending assistant',
+            'Koffie',
             style: whiteTextStyleInter.copyWith(
               fontWeight: bold,
-              fontSize: 18.0,
+              fontSize: 48.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            'Amazing Taste of coffee',
+            style: whiteTextStyleInter.copyWith(
+              fontWeight: regular,
+              fontSize: 22.0,
             ),
             textAlign: TextAlign.center,
           ),
@@ -53,7 +47,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           ),
           const SpinKitThreeInOut(
             color: kSecondaryColor,
-            size: 30,
+            size: 20,
           ),
         ],
       ),
@@ -65,14 +59,19 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Scaffold(
         body: Stack(
       children: [
-        // warna paling bawah
         Container(
           color: kPrimaryColor,
         ),
-        //warna dasar splash
         SafeArea(
           child: Container(
-            color: kPrimaryColor,
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage(
+                  'assets/coffee.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
         content(),
